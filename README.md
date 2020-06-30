@@ -25,3 +25,5 @@ Make sure to read .gitlab-ci.yml. It has comments how to setup release export pr
 
 ## Customization
 Naturally you can customize this configuration, for exmaple by skipping some target HW. Simply comment or remove unnecessary things. Adding other targets (for example Windows) should be easily found on the web - google it.
+
+As a basis, I took the repository https://github.com/myood/godot-ci-android-export
