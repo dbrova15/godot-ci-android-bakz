@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Use Godot 3.2
-ENV GODOT_VERSION "3.2.1"
+ENV GODOT_VERSION "3.2.2"
 
 # Download and install Godot Engine (headless) and export templates
 RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-stable_linux_headless.64.zip \
@@ -28,6 +28,14 @@ RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${G
     && mv templates/* ~/.local/share/godot/templates/${GODOT_VERSION}.stable \
     && rm -f Godot_v${GODOT_VERSION}-stable_export_templates.tpz Godot_v${GODOT_VERSION}-stable_linux_headless.64.zip
     
+# Install GRADLE
+RUN wget -q https://services.gradle.org/distributions/gradle-3.3-bin.zip \
+    && unzip gradle-3.3-bin.zip -d /opt \
+    && rm gradle-3.3-bin.zip
+
+ENV GRADLE_HOME /opt/gradle-3.3
+ENV PATH $PATH:/opt/gradle-3.3/bin
+
 # Download and install Android SDK
 RUN mkdir -p -v ~/android \
     && cd ~/android \
